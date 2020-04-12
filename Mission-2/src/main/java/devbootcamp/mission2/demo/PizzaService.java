@@ -30,6 +30,7 @@ public class PizzaService {
         if(!pizzaOptional.isPresent()){
             return pizzaOptional;
         }
+        pizza.setId(id);
         return Optional.of(pizzaRepository.save(pizza));
     }
 
