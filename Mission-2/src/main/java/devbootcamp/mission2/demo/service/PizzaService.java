@@ -1,5 +1,7 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission2.demo.service;
 
+import devbootcamp.mission2.demo.model.Pizza;
+import devbootcamp.mission2.demo.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -9,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class PizzaService {
-    private PizzaRepository  pizzaRepository;
+    private PizzaRepository pizzaRepository;
 
     @Autowired
     public PizzaService(PizzaRepository repository) {

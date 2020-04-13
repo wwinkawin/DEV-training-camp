@@ -1,4 +1,4 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission2.demo.model;
 
 import lombok.Data;
 

@@ -1,5 +1,7 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission2.demo.controller;
 
+import devbootcamp.mission2.demo.service.PizzaService;
+import devbootcamp.mission2.demo.model.Pizza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
