@@ -1,4 +1,4 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission3.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

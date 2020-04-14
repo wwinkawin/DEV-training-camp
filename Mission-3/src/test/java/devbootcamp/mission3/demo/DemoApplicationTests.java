@@ -1,4 +1,4 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission3.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package devbootcamp.mission2.demo.model;
+package devbootcamp.mission3.demo.model;
 
 import lombok.Data;
 
@@ -20,5 +20,4 @@ public class Pizza {
 
     @Column
     private boolean isFavorite;
-
 }

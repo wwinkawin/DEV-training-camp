@@ -1,4 +1,4 @@
-package devbootcamp.mission2.demo;
+package devbootcamp.mission3.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,4 +11,3 @@ public class DemoApplication {
     }
 
 }
-
