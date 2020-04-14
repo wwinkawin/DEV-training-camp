@@ -1,4 +1,4 @@
-package devbootcamp.mission3.demo;
+package devbootcamp.mission3.demo.util;
 
 import devbootcamp.mission3.demo.model.Pizza;
 import org.springframework.jdbc.core.RowMapper;

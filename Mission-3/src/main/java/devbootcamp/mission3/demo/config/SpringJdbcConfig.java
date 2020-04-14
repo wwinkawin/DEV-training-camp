@@ -16,7 +16,7 @@ public class SpringJdbcConfig {
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/pizza_store");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("1011");
 
         return dataSource;
     }
