@@ -22,6 +22,15 @@ public class PizzaController {
         return pizzaService.retrievePizza();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPizza(@PathVariable Long id) {
+        Optional<Pizza> pizza = pizzaService.retrievePizza(id);
+        if(pizza.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pizza);
+    }
+
     @PostMapping()
     public ResponseEntity<?> postPizza(@RequestBody Pizza body) {
         Pizza pizza = pizzaService.createPizza(body);
@@ -31,7 +40,7 @@ public class PizzaController {
     @PutMapping("/{id}")
     public ResponseEntity<?> putPizza(@PathVariable Long id, @RequestBody Pizza body) {
         Optional<Pizza> pizza = pizzaService.updatePizza(id, body);
-        if(!pizza.isPresent()) {
+        if(pizza.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().build();

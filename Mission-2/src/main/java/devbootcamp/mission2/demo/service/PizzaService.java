@@ -22,6 +22,10 @@ public class PizzaService {
         return (List<Pizza>) pizzaRepository.findAll();
     }
 
+    public Optional<Pizza> retrievePizza(Long id) {
+        return pizzaRepository.findById(id);
+    }
+
     public Pizza createPizza(Pizza pizza) {
         pizza.setId(null);
         return pizzaRepository.save(pizza);
@@ -44,4 +48,6 @@ public class PizzaService {
             return false;
         }
     }
+
+
 }

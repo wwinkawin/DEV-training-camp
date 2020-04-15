@@ -20,5 +20,4 @@ public class Pizza {
 
     @Column
     private boolean isFavorite;
-
 }
