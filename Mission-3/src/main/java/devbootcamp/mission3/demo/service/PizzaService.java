@@ -1,37 +1,44 @@
 package devbootcamp.mission3.demo.service;
 
+import com.fasterxml.jackson.annotation.OptBoolean;
+import devbootcamp.mission3.demo.repository.SqlRepository;
 import devbootcamp.mission3.demo.util.PizzaRowMapper;
 import devbootcamp.mission3.demo.config.SpringJdbcConfig;
 import devbootcamp.mission3.demo.model.Pizza;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PizzaService {
 
     //Initialize Data source
     DataSource dataSource = new SpringJdbcConfig().mysqlDataSource();
-
     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+    SqlRepository repo = new SqlRepository();
+
     public List<Pizza> retrievePizza() {
-        return jdbcTemplate.query("SELECT * FROM menu", new PizzaRowMapper());
+        return repo.selectAll();
     }
 
-    public void createPizza(Pizza pizza) {
-        jdbcTemplate.update("INSERT INTO menu(menu, extra_topping, is_favorite) VALUES (?, ?, ?)", pizza.getMenu(),
-                pizza.getExtraTopping(), pizza.isFavorite());
+    public Optional<Pizza> retrievePizza(Long id) {
+        return Optional.of(repo.select(id));
     }
 
-    public void updatePizza(Long id, Pizza pizza) {
-        jdbcTemplate.update("UPDATE menu set menu = ?, extra_topping = ?, is_favorite = ? where id = ?",
-                 pizza.getMenu(), pizza.getExtraTopping(), pizza.isFavorite(),id);
+    public int createPizza(Pizza pizza) {
+        return repo.insert(pizza);
     }
 
-    public void deletePizza(Long id) {
-        jdbcTemplate.update("DELETE FROM menu WHERE id = ?", id);
+    public int updatePizza(Long id, Pizza pizza) {
+        return repo.update(id, pizza);
+    }
+
+    public int deletePizza(Long id) {
+        return repo.delete(id);
     }
 }

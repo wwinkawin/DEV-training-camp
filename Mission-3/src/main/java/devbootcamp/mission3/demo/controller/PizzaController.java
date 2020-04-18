@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pizza")
@@ -21,21 +22,44 @@ public class PizzaController {
         return pizzaService.retrievePizza();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPizza(@PathVariable Long id) {
+        Optional<Pizza> pizza = pizzaService.retrievePizza(id);
+        if (pizza.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.ok(pizza);
+        }
+
+    }
+
     @PostMapping()
     public ResponseEntity<?> postPizza(@RequestBody Pizza body) {
-        pizzaService.createPizza(body);
-        return ResponseEntity.status(HttpStatus.CREATED).body(body);
+        //If 0 rows affected, return NOT_FOUND
+        if (pizzaService.createPizza(body) == 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+        }
+        //Else returned created
+        else {
+            return ResponseEntity.status(HttpStatus.CREATED).body(body);
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> putPizza(@PathVariable Long id, @RequestBody Pizza body) {
-        pizzaService.updatePizza(id, body);
-        return ResponseEntity.ok().build();
+        if (pizzaService.updatePizza(id, body) == 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+        } else {
+            return ResponseEntity.ok().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePizza(@PathVariable Long id) {
-        pizzaService.deletePizza(id);
-        return ResponseEntity.ok().build();
+        if (pizzaService.deletePizza(id) == 0) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id);
+        } else {
+            return ResponseEntity.ok().build();
+        }
     }
 }
