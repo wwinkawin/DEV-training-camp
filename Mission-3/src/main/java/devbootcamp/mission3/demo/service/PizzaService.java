@@ -27,7 +27,7 @@ public class PizzaService {
     }
 
     public Optional<Pizza> retrievePizza(Long id) {
-        return Optional.of(repo.select(id));
+        return Optional.ofNullable(repo.select(id));
     }
 
     public int createPizza(Pizza pizza) {

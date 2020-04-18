@@ -30,7 +30,6 @@ public class PizzaController {
         } else {
             return ResponseEntity.ok(pizza);
         }
-
     }
 
     @PostMapping()
