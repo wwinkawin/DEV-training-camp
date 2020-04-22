@@ -3,6 +3,8 @@ package devbootcamp.mission2.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
+
 
 @Data
 @Entity
@@ -15,8 +17,8 @@ public class Pizza {
     @Column(nullable = false)
     private String menu;
 
-    @Column
-    private String extraTopping;
+    @ElementCollection
+    private List<String> extraTopping;
 
     @Column
     private boolean isFavorite;
