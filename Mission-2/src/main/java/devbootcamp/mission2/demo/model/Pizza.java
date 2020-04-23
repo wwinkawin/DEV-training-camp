@@ -15,7 +15,7 @@ public class Pizza {
     private Long id;
 
     @Column(nullable = false)
-    private String menu;
+    private String flavour;
 
     @ElementCollection
     private List<String> extraTopping;
