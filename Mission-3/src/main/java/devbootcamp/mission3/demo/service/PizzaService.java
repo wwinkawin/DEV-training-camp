@@ -1,12 +1,9 @@
 package devbootcamp.mission3.demo.service;
 
-import com.fasterxml.jackson.annotation.OptBoolean;
-import devbootcamp.mission3.demo.repository.SqlRepository;
-import devbootcamp.mission3.demo.util.PizzaRowMapper;
+import devbootcamp.mission3.demo.repository.PizzaRepository;
 import devbootcamp.mission3.demo.config.SpringJdbcConfig;
 import devbootcamp.mission3.demo.model.Pizza;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -16,11 +13,8 @@ import java.util.Optional;
 @Service
 public class PizzaService {
 
-    //Initialize Data source
-    DataSource dataSource = new SpringJdbcConfig().mysqlDataSource();
-    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-    SqlRepository repo = new SqlRepository();
+    @Autowired
+    PizzaRepository repo = new PizzaRepository();
 
     public List<Pizza> retrievePizza() {
         return repo.selectAll();

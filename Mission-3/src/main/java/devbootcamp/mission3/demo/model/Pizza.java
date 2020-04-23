@@ -3,6 +3,7 @@ package devbootcamp.mission3.demo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,10 +14,10 @@ public class Pizza {
     private Long id;
 
     @Column(nullable = false)
-    private String menu;
+    private String flavour;
 
-    @Column
-    private String extraTopping;
+    @ElementCollection
+    private List<String> extraTopping;
 
     @Column
     private boolean isFavorite;

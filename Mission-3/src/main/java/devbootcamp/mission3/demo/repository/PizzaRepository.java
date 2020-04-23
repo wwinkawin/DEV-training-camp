@@ -3,6 +3,7 @@ package devbootcamp.mission3.demo.repository;
 import devbootcamp.mission3.demo.config.SpringJdbcConfig;
 import devbootcamp.mission3.demo.model.Pizza;
 import devbootcamp.mission3.demo.util.PizzaRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,9 +12,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class SqlRepository {
+public class PizzaRepository {
     //Initialize Data source
     DataSource dataSource = new SpringJdbcConfig().mysqlDataSource();
+    @Autowired
     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
     //Select ALL method
@@ -31,13 +33,13 @@ public class SqlRepository {
     }
 
     public int insert(Pizza pizza) {
-        return jdbcTemplate.update("INSERT INTO menu(menu, extra_topping, is_favorite) VALUES (?, ?, ?)", pizza.getMenu(),
-                pizza.getExtraTopping(), pizza.isFavorite());
+        return jdbcTemplate.update("INSERT INTO menu(flavour, extra_topping, is_favorite) VALUES (?, ?, ?)", pizza.getFlavour(),
+                pizza.getExtraTopping().toString(), pizza.isFavorite());
     }
 
     public int update(Long id, Pizza pizza) {
-        return jdbcTemplate.update("UPDATE menu set menu = ?, extra_topping = ?, is_favorite = ? where id = ?",
-                pizza.getMenu(), pizza.getExtraTopping(), pizza.isFavorite(), id);
+        return jdbcTemplate.update("UPDATE menu set flavour = ?, extra_topping = ?, is_favorite = ? where id = ?",
+                pizza.getFlavour(), pizza.getExtraTopping().toString(), pizza.isFavorite(), id);
     }
 
     public int delete(Long id) {
