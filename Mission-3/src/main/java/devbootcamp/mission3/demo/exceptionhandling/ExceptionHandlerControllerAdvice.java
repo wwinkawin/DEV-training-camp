@@ -14,7 +14,7 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler(MandatoryIsNullException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public @ResponseBody
-    ExceptionResponse handleResourceNotFound(final MandatoryIsNullException exception,
+    ExceptionResponse handleNullMandatoryField(final MandatoryIsNullException exception,
                                              final HttpServletRequest request) {
         ExceptionResponse error = new ExceptionResponse();
         error.setErrorMessage(exception.getMessage());

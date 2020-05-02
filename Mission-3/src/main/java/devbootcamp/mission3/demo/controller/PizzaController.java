@@ -30,22 +30,14 @@ public class PizzaController {
 
     @PostMapping()
     public ResponseEntity<?> postPizza(@RequestBody Pizza body) throws PizzaServiceException {
-        try {
-            pizzaService.createPizza(body);
-            return ResponseEntity.status(HttpStatus.CREATED).body(body);
-        } catch (PizzaServiceException e) {
-            throw new PizzaServiceException();
-        }
+        pizzaService.createPizza(body);
+        return ResponseEntity.status(HttpStatus.CREATED).body(body);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> putPizza(@PathVariable Long id, @RequestBody Pizza body) throws PizzaServiceException {
-        try {
-            pizzaService.updatePizza(id, body);
-            return ResponseEntity.ok().build();
-        } catch (PizzaServiceException e) {
-            throw new PizzaServiceException();
-        }
+        pizzaService.updatePizza(id, body);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
